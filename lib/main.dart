@@ -1,8 +1,10 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:simple_chat/models/appdata.dart';
 import 'package:simple_chat/pages/home.dart';
-import 'package:simple_chat/services/auth_service.dart';
+import 'package:simple_chat/widgets/error_widget.dart';
+import 'package:simple_chat/widgets/loading_widget.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,9 +41,7 @@ class _MyAppState extends State<MyApp> {
           // has error
           if (snapshot.hasError) {
             return const Scaffold(
-              body: Center(
-                child: Text("Something went wrong!"),
-              ),
+              body: ErrorMessageWidget(),
             );
           }
 
@@ -52,9 +52,7 @@ class _MyAppState extends State<MyApp> {
 
           // loading
           return const Scaffold(
-            body: Center(
-              child: CircularProgressIndicator(),
-            ),
+            body: LoadingWidget(),
           );
         },
       ),

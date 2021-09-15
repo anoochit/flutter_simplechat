@@ -46,22 +46,6 @@ Future<bool?> firebaseSignIn(String email, String password) async {
   }
 }
 
-late AppData appData;
-
-class AppData extends ChangeNotifier {
-  String? userDisplayName;
-  String? userUid;
-
-  void getUserData() {
-    userDisplayName = firebaseAuth.currentUser!.displayName!;
-    userUid = firebaseAuth.currentUser!.uid;
-  }
-
-  void changeDisplayName(String name) {
-    userDisplayName = name;
-  }
-}
-
 void signIn({required String username, required String password, required BuildContext context}) {
   firebaseSignIn(username, password).then((result) {
     if (result!) {
